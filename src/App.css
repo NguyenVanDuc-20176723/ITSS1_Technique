@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  /*text-align: center;*/
+  margin-left: 50px
 }
 
 .App-logo {
@@ -38,5 +39,9 @@
 }
 
 button {
-  margin: 50px 50px;
+  margin: 15px 150px;
+}
+
+.element-tag {
+  margin-top: 15px;
 }

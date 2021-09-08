@@ -8,21 +8,13 @@ function Todo(){
         {id: 3, text: "Hung"},
         {id: 4, text: "Duc"}
         ])
-    const [index, setIndex] = useState(1);
-    
-    function upChange(){
-        
-        if (index == items.length)
-            setIndex(1);
-        else setIndex(index+1);
+    const [obj, setObj] = useState({})
+    function handleChange(evt){
+        setObj({id: items.length + 1, text: evt.target.value});
     }
-    
-    function downChange(){
-        
-        if (index == 1) setIndex(items.length);
-        else setIndex(index-1);
+    function handleClick(){
+        putItems([...items, obj]);
     }
-    
     useEffect(() => {
         putItems(arr);
       }, []);
@@ -30,21 +22,16 @@ function Todo(){
     return (
         <div>
         
-            <div>学生一覧：[{items.map(item => item.text).join(", ")}]</div>
-            {items.map(item => {
-                if (item.id === index){
-                    return (
-                        <div>
-                            <div>位置：{item.id}</div>
-                            <div>名前：{item.text}</div>
-                        </div>
-                    )
-                }
-            })
-            }
-            
-            <button onClick={upChange}>次に</button>
-            <button onClick={downChange}>前に</button>
+            <div class='element-tag'>学生一覧：[{arr.map(item => item.text).join(", ")}]</div>
+            <div class='element-tag'>
+                <input
+                    type='text'
+                    onChange={handleChange}
+                />
+            </div>
+            <button onClick={handleClick}>確定</button>
+            <div class='element-tag'>追加する名前：{obj.text}</div>
+            <div class='element-tag'>新しい一覧：[{items.map(item => item.text).join(", ")}]</div>
         </div>
     );
 }
